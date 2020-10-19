@@ -6,6 +6,7 @@ import java.util.Optional;
 public interface ICRUD<T>{
     List<Object> getAll();
     Optional<Object> get(int id);
-    Object delete(int id);
-    Object update(T object);
+    List<Object> delete(int id);
+    List<Object> update(T object);
+    List<Object> save(T object);
 }

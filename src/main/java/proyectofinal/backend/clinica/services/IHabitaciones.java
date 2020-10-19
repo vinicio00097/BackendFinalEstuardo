@@ -1,4 +1,6 @@
 package proyectofinal.backend.clinica.services;
 
-public interface IHabitaciones extends ICRUD<> {
+import proyectofinal.backend.clinica.models.Habitacion;
+
+public interface IHabitaciones extends ICRUD<Habitacion> {
 }
