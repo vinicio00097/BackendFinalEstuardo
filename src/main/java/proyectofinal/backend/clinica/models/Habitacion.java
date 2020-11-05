@@ -3,6 +3,8 @@ package proyectofinal.backend.clinica.models;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "Habitacion")
 public class Habitacion {
@@ -23,7 +25,8 @@ public class Habitacion {
     @JoinColumn(name = "IdNivelEdificio")
     private NivelEdificio NivelEdificio;
 
-
+    @OneToMany(mappedBy = "Habitacion")
+    private List<PacienteInternado> internados=new ArrayList<>();
 
 
     public proyectofinal.backend.clinica.models.Ubicacion getUbicacion() {
@@ -82,4 +85,7 @@ public class Habitacion {
         Descripcion = descripcion;
     }
 
+    public void setInternados(List<PacienteInternado> internados) {
+        this.internados = internados;
+    }
 }
