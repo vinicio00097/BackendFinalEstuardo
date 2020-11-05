@@ -79,4 +79,25 @@ public class PacienteController {
             ), HttpStatus.OK);
         }
     }
+
+    @PutMapping("/Update")
+    public ResponseEntity<Object> update(@RequestBody Paciente paciente){
+        List<Object> response=pacientes.update(paciente);
+
+        if(((int) response.get(0))==1){
+            return new ResponseEntity<>(new JsonResponse(
+                    "success",
+                    44,
+                    response.get(1),
+                    "Paciente modificado correctamente."
+            ), HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(new JsonResponse(
+                    "fail",
+                    40,
+                    null,
+                    "Ha ocurrido un error al modificar al paciente."
+            ), HttpStatus.OK);
+        }
+    }
 }

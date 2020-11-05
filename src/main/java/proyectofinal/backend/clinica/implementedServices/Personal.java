@@ -2,9 +2,8 @@ package proyectofinal.backend.clinica.implementedServices;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import proyectofinal.backend.clinica.dao.IHabitacionesDao;
-import proyectofinal.backend.clinica.models.Habitacion;
-import proyectofinal.backend.clinica.services.IHabitaciones;
+import proyectofinal.backend.clinica.dao.IPersonalDao;
+import proyectofinal.backend.clinica.services.IPersonal;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -12,14 +11,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class Habitaciones implements IHabitaciones {
+public class Personal implements IPersonal {
     @Autowired
-    private IHabitacionesDao habitacionesDao;
+    private IPersonalDao personalDao;
 
     @Override
     public List<Object> getAll() {
-        try{
-            return Arrays.asList(1,habitacionesDao.findAll());
+        try {
+            return Arrays.asList(1,personalDao.findAll());
         }catch (Exception e){
             e.printStackTrace();
             return Collections.singletonList(0);
@@ -37,16 +36,12 @@ public class Habitaciones implements IHabitaciones {
     }
 
     @Override
-    public List<Object> update(Habitacion object) {
-        try{
-            return Arrays.asList(1,habitacionesDao.save(object));
-        }catch (Exception e){
-            return Collections.singletonList(0);
-        }
+    public List<Object> update(proyectofinal.backend.clinica.models.Personal object) {
+        return null;
     }
 
     @Override
-    public List<Object> save(Habitacion object) {
+    public List<Object> save(proyectofinal.backend.clinica.models.Personal object) {
         return null;
     }
 }

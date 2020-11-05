@@ -13,7 +13,7 @@ public class TipoHabitacion {
     private String Descripcion;
 
     @NotBlank
-    private String Activo;
+    private boolean Activo;
 
     @OneToMany(mappedBy = "TipoHabitacion")
     private List<Habitacion> habitaciones=new ArrayList<>();
@@ -35,11 +35,11 @@ public class TipoHabitacion {
         Descripcion = descripcion;
     }
 
-    public String getActivo() {
+    public boolean getActivo() {
         return Activo;
     }
 
-    public void setActivo(String activo) {
+    public void setActivo(boolean activo) {
         Activo = activo;
     }
 

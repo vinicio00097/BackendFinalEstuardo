@@ -47,7 +47,11 @@ public class Pacientes implements IPacientes {
 
     @Override
     public List<Object> update(Paciente object) {
-        return null;
+        try{
+            return Arrays.asList(1,pacientesDao.save(object));
+        }catch (Exception e){
+            return Collections.singletonList(0);
+        }
     }
 
     @Override

@@ -1,9 +1,8 @@
 package proyectofinal.backend.clinica.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "Paciente")
 public class Paciente {
@@ -18,6 +17,9 @@ public class Paciente {
     private String ApellidoCasada;
     private String NIT;
     private String DPI;
+
+    @OneToMany(mappedBy = "Paciente")
+    private List<PacienteInternado> internados=new ArrayList<>();
 
     public int getIdPaciente() {
         return IdPaciente;
@@ -89,5 +91,13 @@ public class Paciente {
 
     public void setDPI(String DPI) {
         this.DPI = DPI;
+    }
+
+    public void setInternados(List<PacienteInternado> internados) {
+        this.internados = internados;
+    }
+
+    public List<PacienteInternado> getInternados() {
+        return internados;
     }
 }
