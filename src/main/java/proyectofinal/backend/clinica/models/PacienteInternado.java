@@ -1,5 +1,7 @@
 package proyectofinal.backend.clinica.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -12,8 +14,9 @@ public class PacienteInternado {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int IdPacienteInternado;
 
-    private Timestamp FechaIngreso;
-    private Timestamp FechaSalida;
+    private String FechaIngreso;
+
+    private String FechaSalida;
 
     @ManyToOne
     @JoinColumn(name = "IdPaciente")
@@ -23,9 +26,6 @@ public class PacienteInternado {
     @JoinColumn(name = "IdHabitacion")
     private Habitacion Habitacion;
 
-    @OneToMany(mappedBy = "PacienteInternado")
-    private List<CitaPaciente> citasPaciente=new ArrayList<>();
-
     public int getIdPacienteInternado() {
         return IdPacienteInternado;
     }
@@ -34,21 +34,6 @@ public class PacienteInternado {
         IdPacienteInternado = idPacienteInternado;
     }
 
-    public Timestamp getFechaIngreso() {
-        return FechaIngreso;
-    }
-
-    public void setFechaIngreso(Timestamp fechaIngreso) {
-        FechaIngreso = fechaIngreso;
-    }
-
-    public Timestamp getFechaSalida() {
-        return FechaSalida;
-    }
-
-    public void setFechaSalida(Timestamp fechaSalida) {
-        FechaSalida = fechaSalida;
-    }
 
     /*public proyectofinal.backend.clinica.models.Paciente getPaciente() {
         return Paciente;
@@ -66,11 +51,19 @@ public class PacienteInternado {
         Habitacion = habitacion;
     }
 
-    public List<CitaPaciente> getCitasPaciente() {
-        return citasPaciente;
+    public String getFechaIngreso() {
+        return FechaIngreso;
     }
 
-    public void setCitasPaciente(List<CitaPaciente> citasPaciente) {
-        this.citasPaciente = citasPaciente;
+    public void setFechaIngreso(String fechaIngreso) {
+        FechaIngreso = fechaIngreso;
+    }
+
+    public String getFechaSalida() {
+        return FechaSalida;
+    }
+
+    public void setFechaSalida(String fechaSalida) {
+        FechaSalida = fechaSalida;
     }
 }

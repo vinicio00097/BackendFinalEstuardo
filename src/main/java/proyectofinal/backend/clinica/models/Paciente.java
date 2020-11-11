@@ -18,8 +18,11 @@ public class Paciente {
     private String NIT;
     private String DPI;
 
-    @OneToMany(mappedBy = "Paciente")
+    @OneToMany(mappedBy = "Paciente",cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private List<PacienteInternado> internados=new ArrayList<>();
+
+    @OneToMany(mappedBy = "Paciente")
+    private List<CitaPaciente> citas=new ArrayList<>();
 
     public int getIdPaciente() {
         return IdPaciente;
@@ -99,5 +102,13 @@ public class Paciente {
 
     public List<PacienteInternado> getInternados() {
         return internados;
+    }
+
+    public List<CitaPaciente> getCitas() {
+        return citas;
+    }
+
+    public void setCitas(List<CitaPaciente> citas) {
+        this.citas = citas;
     }
 }
