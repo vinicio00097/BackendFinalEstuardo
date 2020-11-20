@@ -19,7 +19,7 @@ public class CitaController {
     CitasPaciente citasPaciente;
 
     @PostMapping("/Create")
-    public ResponseEntity<Object> create(@RequestBody CitaPaciente citaPaciente) throws JsonProcessingException {
+    public ResponseEntity<Object> create(@RequestBody CitaPaciente citaPaciente){
         List<Object> response=citasPaciente.save(citaPaciente);
 
         if(((int) response.get(0))==1){

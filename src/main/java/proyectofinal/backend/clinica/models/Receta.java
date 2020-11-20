@@ -1,6 +1,7 @@
 package proyectofinal.backend.clinica.models;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,23 +10,22 @@ public class Receta {
     private @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     int IdReceta;
 
-    private String FechaReceta;
+    private String FechaReceta=new Timestamp(System.currentTimeMillis()).toString();
 
     @ManyToOne
     @JoinColumn(name = "IdCitaPaciente")
     private CitaPaciente citaPaciente;
 
-    @ManyToMany
-    @JoinTable(
-            name = "DetallesReceta",
-            joinColumns = {
-                    @JoinColumn(name = "IdReceta",referencedColumnName = "IdReceta")
-            },
-            inverseJoinColumns = {
-                    @JoinColumn(name = "IdMedicina",referencedColumnName = "IdMedicina")
-            }
-    )
-    private List<Medicina> medicinas;
+    @OneToMany(mappedBy = "receta")
+    private List<DetallesReceta> detallesRecetas;
+
+    public List<DetallesReceta> getDetallesRecetas() {
+        return detallesRecetas;
+    }
+
+    public void setDetallesRecetas(List<DetallesReceta> detallesRecetas) {
+        this.detallesRecetas = detallesRecetas;
+    }
 
     public int getIdReceta() {
         return IdReceta;
@@ -51,11 +51,4 @@ public class Receta {
         this.citaPaciente = citaPaciente;
     }
 
-    public List<Medicina> getMedicinas() {
-        return medicinas;
-    }
-
-    public void setMedicinas(List<Medicina> medicinas) {
-        this.medicinas = medicinas;
-    }
 }

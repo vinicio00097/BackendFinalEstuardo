@@ -20,8 +20,8 @@ public class Medicina {
     @JoinColumn(name = "IdPresentacionMedicina")
     private PresentacionMedicina presentacionMedicina;*/
 
-    @ManyToMany(mappedBy = "medicinas")
-    private List<Receta> recetas;
+    @OneToMany(mappedBy = "medicina")
+    private List<DetallesReceta> detallesRecetas;
 
     private Boolean Activo;
 
